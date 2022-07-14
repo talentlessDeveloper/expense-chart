@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+
+    <title>Frontend Mentor | Expenses chart component</title>
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <section class="expense">
+        <div class="expense__container">
+          <div class="expense__balance">
+            <div>
+              <p>My balance</p>
+              <span>$921.48</span>
+            </div>
+            <img src="./images/logo.svg" alt="circle" />
+          </div>
+          <div class="expense__chart-container">
+            <h2 class="expense__chart-title">Spending - Last 7 days</h2>
+
+            <div class="svg-chart"></div>
+            <div class="expense__total">
+              <div class="expense__total-thisMonth">
+                <p>Total this month</p>
+                <span> $478.33</span>
+              </div>
+              <div class="expense__total-lastMonth">
+                <span>+2.4%</span>
+                <p>from last month</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by
+      <a href="https://www.frontendmentor.io/profile/talentlessDeveloper"
+        >Kareem</a
+      >.
+    </footer>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.6.1/d3.min.js"
+      integrity="sha512-MefNfAGJ/pEy89xLOFs3V6pYPs6AmUhXJrRlydI/9wZuGrqxmrdQ80zKHUcyadAcpH67teDZcBeS6oMJLPtTqw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </body>
+</html>
