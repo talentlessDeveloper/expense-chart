@@ -98,7 +98,6 @@ main {
 }
 
 .bar {
-  cursor: pointer;
 }
 
 .bar:hover {
@@ -111,6 +110,10 @@ main {
   position: absolute;
   padding: 0.5rem;
   border-radius: 0.25rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
 }
 
 .tooltip > p {

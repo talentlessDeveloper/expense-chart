@@ -82,6 +82,9 @@ let rect = svg
 
 let labels = d3.select(".svg-chart").append("div").attr("class", "labels");
 
+const containerHeight = document.querySelector(".svg-chart").clientHeight;
+const containerWidth = document.querySelector(".svg-chart").clientWidth;
+
 function drawChart() {
   let width = parseInt(d3.select(".svg-chart").style("width"));
   let barWidth = width / (dataset.length + 2);
@@ -91,24 +94,48 @@ function drawChart() {
     .attr("x", (d, i) => xScale(i))
     .attr("width", () => (width > 400 ? barWidth : 33))
     .on("mouseover", (e, d) => {
+      if (window.innerWidth < 420) return;
       return tooltip.style("opacity", 1).html(`<p>$${d.amount}</p>`);
     })
     .on("mousemove", (e) => {
       let mouseMove = throttle(() => {
         let y = width > 400 ? `${e.pageY - 300}px` : `${e.pageY - 300}px`;
-        let x =
-          width <= 300
-            ? `${e.pageX - 50}px`
-            : width <= 400
-            ? `${e.pageX - 250}px`
-            : `${e.pageX - 450}px`;
 
-        return tooltip.style("top", y).style("left", x);
+        if (window.innerWidth < 420) return;
+        if (window.innerWidth > 420 && window.innerWidth < 500) {
+          return tooltip.style("top", y).style("left", `${e.pageX}px`);
+        }
+        if (window.innerWidth > 500 && window.innerWidth < 610) {
+          return tooltip.style("top", y).style("left", `${e.pageX - 50}px`);
+        }
+        if (window.innerWidth > 610 && window.innerWidth < 750) {
+          return tooltip.style("top", y).style("left", `${e.pageX - 100}px`);
+        }
+
+        return tooltip.style("top", y).style("left", `${e.pageX - 420}px`);
       }, 1000);
       mouseMove();
     })
     .on("mouseleave", () => {
+      if (window.innerWidth < 420) return;
       return tooltip.style("opacity", 0);
+    })
+    .on("click", (e, d) => {
+      if (window.innerWidth > 420) return;
+
+      let y = `${e.target.height + 40}px`;
+      let x = `${e.pageX - 30}px`;
+      e.target.style.opacity = 0.8;
+      tooltip
+        .style("opacity", 1)
+        .html(`<p>$${d.amount}</p>`)
+        .style("top", y)
+        .style("left", x);
+
+      setTimeout(() => {
+        e.target.style.opacity = 1;
+        tooltip.style("opacity", 0);
+      }, 2000);
     });
 
   labels.style("width", `${width - 10}px`);
